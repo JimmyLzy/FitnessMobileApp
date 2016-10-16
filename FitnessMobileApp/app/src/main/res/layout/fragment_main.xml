@@ -25,7 +25,9 @@
         android:text="Ex1"
         android:id="@+id/ex1"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:onClick="startExercise1"/>
 
     <Button
         android:layout_width="100dp"
@@ -33,7 +35,8 @@
         android:text="Ex2"
         android:id="@+id/ex2"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
 
     <Button
         android:layout_width="100dp"
@@ -41,7 +44,8 @@
         android:text="Ex3"
         android:id="@+id/ex3"
         android:layout_marginLeft="230dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
 
     <Button
         android:layout_width="100dp"
@@ -49,7 +53,8 @@
         android:text="Ex4"
         android:id="@+id/ex4"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="120dp" />
+        android:layout_marginTop="120dp"
+        android:visibility="gone" />
 
     <Button
         android:layout_width="100dp"
@@ -57,7 +62,8 @@
         android:text="Ex5"
         android:id="@+id/ex5"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="120dp" />
+        android:layout_marginTop="120dp"
+        android:visibility="gone" />
 
     <Button
         android:layout_width="100dp"
@@ -65,7 +71,8 @@
         android:text="Ex6"
         android:id="@+id/ex6"
         android:layout_marginLeft="230dp"
-        android:layout_marginTop="120dp" />
+        android:layout_marginTop="120dp"
+        android:visibility="gone" />
 
     <Button
         android:layout_width="100dp"
@@ -73,7 +80,8 @@
         android:text="Ex7"
         android:id="@+id/ex7"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="230dp" />
+        android:layout_marginTop="230dp"
+        android:visibility="gone" />
 
     <Button
         android:layout_width="100dp"
@@ -81,7 +89,8 @@
         android:text="Ex8"
         android:id="@+id/ex8"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="230dp" />
+        android:layout_marginTop="230dp"
+        android:visibility="gone" />
 
     <Button
         android:layout_width="100dp"
@@ -89,7 +98,8 @@
         android:text="Ex9"
         android:id="@+id/ex9"
         android:layout_marginLeft="230dp"
-        android:layout_marginTop="230dp" />
+        android:layout_marginTop="230dp"
+        android:visibility="gone" />
 
 
 
