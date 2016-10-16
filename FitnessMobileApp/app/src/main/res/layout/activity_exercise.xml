@@ -9,4 +9,10 @@
         android:text="new exercise"
         android:id="@+id/exercisebutton" />
 
+    <ImageView
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/body" />
+
 </LinearLayout>
