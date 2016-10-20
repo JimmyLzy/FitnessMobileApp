@@ -1,6 +1,7 @@
 package group04.fitnessmobileapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,8 +11,15 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private List<Button> exerciseList = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,42 +27,66 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
 
-        Button startButton = (Button) findViewById(R.id.button);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Button button1 = (Button) findViewById(R.id.ex1);
-                button1.setVisibility(View.VISIBLE);
-                Button button2 = (Button) findViewById(R.id.ex2);
-                button2.setVisibility(View.VISIBLE);
-                Button button3 = (Button) findViewById(R.id.ex3);
-                button3.setVisibility(View.VISIBLE);
-                Button button4 = (Button) findViewById(R.id.ex4);
-                button4.setVisibility(View.VISIBLE);
-                Button button5 = (Button) findViewById(R.id.ex5);
-                button5.setVisibility(View.VISIBLE);
-                Button button6 = (Button) findViewById(R.id.ex6);
-                button6.setVisibility(View.VISIBLE);
-                Button button7 = (Button) findViewById(R.id.ex7);
-                button7.setVisibility(View.VISIBLE);
-                Button button8 = (Button) findViewById(R.id.ex8);
-                button8.setVisibility(View.VISIBLE);
-                Button button9 = (Button) findViewById(R.id.ex9);
-                button9.setVisibility(View.VISIBLE);
+    public void showExercises(View view) {
+
+        Button start = (Button) findViewById(R.id.button);
+
+        if (start.getText().equals("Go!")) {
+            Intent intent = new Intent(this, ExerciseActivity.class);
+            startActivity(intent);
+        }
+
+        start.setText("Go!");
+
+        ImageView image = (ImageView) findViewById(R.id.body);
+        image.setVisibility(View.GONE);
+
+        TextView text = (TextView) findViewById(R.id.instruction);
+        text.setVisibility(View.GONE);
+
+
+        Button button1 = (Button) findViewById(R.id.ex1);
+        button1.setVisibility(View.VISIBLE);
+        Button button2 = (Button) findViewById(R.id.ex2);
+        button2.setVisibility(View.VISIBLE);
+        Button button3 = (Button) findViewById(R.id.ex3);
+        button3.setVisibility(View.VISIBLE);
+        Button button4 = (Button) findViewById(R.id.ex4);
+        button4.setVisibility(View.VISIBLE);
+        Button button5 = (Button) findViewById(R.id.ex5);
+        button5.setVisibility(View.VISIBLE);
+        Button button6 = (Button) findViewById(R.id.ex6);
+        button6.setVisibility(View.VISIBLE);
+        Button button7 = (Button) findViewById(R.id.ex7);
+        button7.setVisibility(View.VISIBLE);
+        Button button8 = (Button) findViewById(R.id.ex8);
+        button8.setVisibility(View.VISIBLE);
+        Button button9 = (Button) findViewById(R.id.ex9);
+        button9.setVisibility(View.VISIBLE);
+
+
+    }
+
+    public void addExerciseToList(View v) {
+        Button button = (Button)v;
+        if (exerciseList.contains(button)) {
+            exerciseList.remove(button);
+            button.setBackgroundColor(Color.rgb(145, 248, 234));
+            button.setText(button.getText().subSequence(2, button.getText().length()));
+            for (int i = 0; i < exerciseList.size(); i++) {
+                button = exerciseList.get(i);
+                button.setText(exerciseList.indexOf(button) + 1 + "." + button.getText().subSequence(2, button.getText().length()));
             }
 
-        });
-    }
+        } else {
+            exerciseList.add(button);
+            button.setText(exerciseList.indexOf(button) + 1 + "." + button.getText());
+            button.setBackgroundColor(Color.rgb(241, 244, 66));
+        }
 
-    public void startExercise1(View view) {
-        Intent intent = new Intent(this, ExerciseActivity.class);
-        startActivity(intent);
     }
-//    public void onButtonClick(Button view) {
-//        Button button1 = (Button) findViewById(R.id.ex1);
-//        button1.setVisibility("Clicked !!!");
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

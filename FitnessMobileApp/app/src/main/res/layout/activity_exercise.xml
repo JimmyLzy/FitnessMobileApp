@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="new exercise"
-        android:id="@+id/exercisebutton" />
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:textAlignment="center"
+        android:text="0"
+        android:textSize="70dp"
+        android:gravity="bottom"
+        android:paddingBottom="20dp"
+        android:id="@+id/count_exercise"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_button"
+        android:onClick="showExercises"/>
 
-    <ImageView
-        android:id="@+id/body"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/body" />
 
-</LinearLayout>
+
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:text="Type!"
+        android:id="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button_exercise_icon"
+        android:onClick="showExercises"/>
+
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="Calories(kcal):"
+        android:textSize="30dp"
+        android:gravity="center|left"
+        android:id="@+id/cal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList"/>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="130dp"
+        android:text="Feedback"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:id="@+id/feedback"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="360dp"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList"/>
+
+</RelativeLayout>

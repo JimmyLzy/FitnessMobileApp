@@ -9,16 +9,29 @@
     tools:context="group04.fitnessmobileapp.MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
+    <TextView
+        android:id="@+id/instruction"
+        android:layout_width="1000dp"
+        android:layout_height="20dp"
+        android:text="Please wear sensors"
+        android:layout_marginLeft="100dp"/>
 
+    <ImageView
+        android:id="@+id/body"
+        android:layout_width="1000dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/body" />
 
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="Start"
+        android:text="Ready!"
         android:id="@+id/button"
         android:layout_marginLeft="120dp"
         android:layout_marginTop="335dp"
-        android:background="@drawable/round_button" />
+        android:background="@drawable/round_button"
+        android:onClick="showExercises"/>
 
     <Button
         android:layout_width="100dp"
@@ -28,7 +41,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:visibility="gone"
-        android:onClick="startExercise1"/>
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList"/>
 
     <Button
         android:layout_width="100dp"
@@ -37,7 +51,9 @@
         android:id="@+id/ex2"
         android:layout_marginLeft="120dp"
         android:layout_marginTop="10dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList"/>
 
     <Button
         android:layout_width="100dp"
@@ -46,7 +62,9 @@
         android:id="@+id/ex3"
         android:layout_marginLeft="230dp"
         android:layout_marginTop="10dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList"/>
 
     <Button
         android:layout_width="100dp"
@@ -55,7 +73,9 @@
         android:id="@+id/ex4"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="120dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList" />
 
     <Button
         android:layout_width="100dp"
@@ -64,7 +84,9 @@
         android:id="@+id/ex5"
         android:layout_marginLeft="120dp"
         android:layout_marginTop="120dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList" />
 
     <Button
         android:layout_width="100dp"
@@ -73,7 +95,9 @@
         android:id="@+id/ex6"
         android:layout_marginLeft="230dp"
         android:layout_marginTop="120dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList" />
 
     <Button
         android:layout_width="100dp"
@@ -82,7 +106,9 @@
         android:id="@+id/ex7"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="230dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList" />
 
     <Button
         android:layout_width="100dp"
@@ -91,7 +117,9 @@
         android:id="@+id/ex8"
         android:layout_marginLeft="120dp"
         android:layout_marginTop="230dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList" />
 
     <Button
         android:layout_width="100dp"
@@ -100,7 +128,9 @@
         android:id="@+id/ex9"
         android:layout_marginLeft="230dp"
         android:layout_marginTop="230dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/colorLightGreen"
+        android:onClick="addExerciseToList" />
 
 
 
