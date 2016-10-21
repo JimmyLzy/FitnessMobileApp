@@ -27,6 +27,54 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ImageView image = (ImageView) findViewById(R.id.body);
+        image.setVisibility(View.VISIBLE);
+
+        TextView text = (TextView) findViewById(R.id.instruction);
+        text.setVisibility(View.VISIBLE);
+
+
+        Button button1 = (Button) findViewById(R.id.ex1);
+        button1.setVisibility(View.GONE);
+        button1.setText("Ex1");
+        Button button2 = (Button) findViewById(R.id.ex2);
+        button2.setVisibility(View.GONE);
+        button2.setText("Ex2");
+        Button button3 = (Button) findViewById(R.id.ex3);
+        button3.setVisibility(View.GONE);
+        button3.setText("Ex3");
+        Button button4 = (Button) findViewById(R.id.ex4);
+        button4.setVisibility(View.GONE);
+        button4.setText("Ex4");
+        Button button5 = (Button) findViewById(R.id.ex5);
+        button5.setVisibility(View.GONE);
+        button5.setText("Ex5");
+        Button button6 = (Button) findViewById(R.id.ex6);
+        button6.setVisibility(View.GONE);
+        button6.setText("Ex6");
+        Button button7 = (Button) findViewById(R.id.ex7);
+        button7.setVisibility(View.GONE);
+        button7.setText("Ex7");
+        Button button8 = (Button) findViewById(R.id.ex8);
+        button8.setVisibility(View.GONE);
+        button8.setText("Ex8");
+        Button button9 = (Button) findViewById(R.id.ex9);
+        button9.setVisibility(View.GONE);
+        button9.setText("Ex9");
+
+        while (!exerciseList.isEmpty()) {
+            Button button = exerciseList.remove(0);
+            button.setBackgroundColor(Color.rgb(145, 248, 234));
+        }
+
+        Button start = (Button) findViewById(R.id.button);
+        start.setText("Ready");
     }
 
     public void showExercises(View view) {

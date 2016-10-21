@@ -54,4 +54,11 @@
         android:background="@color/colorLightGreen"
         android:onClick="addExerciseToList"/>
 
+    <TextView
+        android:text="TextView"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timer" />
+
 </RelativeLayout>
