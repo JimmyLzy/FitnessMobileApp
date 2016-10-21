@@ -14,20 +14,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private List<Button> exerciseList = new LinkedList<>();
-
+    private ArrayList<CharSequence> exerciseTextList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
     }
 
     @Override
@@ -38,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         TextView text = (TextView) findViewById(R.id.instruction);
         text.setVisibility(View.VISIBLE);
-
 
         Button button1 = (Button) findViewById(R.id.ex1);
         button1.setVisibility(View.GONE);
@@ -83,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (start.getText().equals("Go!")) {
             Intent intent = new Intent(this, ExerciseActivity.class);
+            for (int i = 0; i < exerciseList.size(); i++) {
+                exerciseTextList.add(exerciseList.get(i).getText());
+            }
+            intent.putCharSequenceArrayListExtra("exerciseList", exerciseTextList);
             startActivity(intent);
         }
 
