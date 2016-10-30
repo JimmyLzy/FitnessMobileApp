@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+   private boolean bluetoothSettled = false;
     private List<Button> exerciseList = new LinkedList<>();
     private ArrayList<CharSequence> exerciseTextList = new ArrayList<>();
     @Override
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button start = (Button) findViewById(R.id.button);
 
+
         if (start.getText().equals("Go!")) {
             Intent intent = new Intent(this, ExerciseActivity.class);
             for (int i = 0; i < exerciseList.size(); i++) {
@@ -114,8 +115,11 @@ public class MainActivity extends AppCompatActivity {
         button8.setVisibility(View.VISIBLE);
         Button button9 = (Button) findViewById(R.id.ex9);
         button9.setVisibility(View.VISIBLE);
-
-
+        if (!bluetoothSettled) {
+            Intent intent = new Intent(this, BluetoothActivity.class);
+            intent.putExtra("From Activity:","Main");
+            startActivity(intent);
+        }
     }
 
     public void addExerciseToList(View v) {
