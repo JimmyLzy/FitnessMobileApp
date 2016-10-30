@@ -26,7 +26,7 @@ public class BluetoothActivity extends AppCompatActivity {
     private ArrayList<String> mDeviceList = new ArrayList<String>();
     private BluetoothAdapter mBluetoothAdapter;
     int REQUEST_ENABLE_BT = 2;
-    private LeDeviceListAdapter mLeDeviceListAdapter;
+    private LeDeviceListAdapter mLeDeviceListAdapter = new LeDeviceListAdapter();
     private boolean mScanning;
     private Handler mHandler;
     // Stops scanning after 10 seconds.
@@ -55,6 +55,9 @@ public class BluetoothActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_ENABLE_BT) {
             ((TextView) findViewById(R.id.warning_messgae)).setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.notification_bluetooth_chest_text)).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.select_bluetooth_device)).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.scan_bluetooth_device)).setVisibility(View.GONE);
         }
     }
 
@@ -74,7 +77,7 @@ public class BluetoothActivity extends AppCompatActivity {
             };
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-    private void scanLeDevice(final boolean enable) {
+    public void scanLeDevice(final boolean enable) {
         if (enable) {
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(new Runnable() {
@@ -92,6 +95,13 @@ public class BluetoothActivity extends AppCompatActivity {
             mScanning = false;
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
         }
+        int device_count = mLeDeviceListAdapter.getCount();
+        for (int i = 0; i < device_count; i++){
+            TextView newDevice = new TextView(this);
+            newDevice.setText(mLeDeviceListAdapter.getDevice(i).getName());
+            device_list.addView(newDevice);
+        }
+
     }
 
 
