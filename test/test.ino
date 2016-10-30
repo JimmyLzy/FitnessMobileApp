@@ -1,7 +1,22 @@
 #include <CurieIMU.h>
+#include <CurieBLE.h>
 
 #define THRESHOLD 0.1
 #define MAXOBS 200
+
+const int ledPin = 13; // set ledPin to use on-board LED
+BLEPeripheral blePeripheral; // create peripheral instance
+
+BLEService ledService("19B10000-E8F2-537E-4F6C-D104768A1214"); 
+// create service
+
+BLECharCharacteristic sensorXRaw("19B10001-E8F2-537E-4F6C-D104768A1214",  // standard 16-bit characteristic UUID
+    BLERead | BLENotify);     // remote clients will be able to
+// get notifications if this characteristic changes
+BLECharCharacteristic sensorYRaw("19B10002-E8F2-537E-4F6C-D104768A1214",  // standard 16-bit characteristic UUID
+    BLERead | BLENotify); 
+BLECharCharacteristic sensorZRaw("19B10003-E8F2-537E-4F6C-D104768A1214",  // standard 16-bit characteristic UUID
+    BLERead | BLENotify); 
 
 int lastobs[3][5] = {
   {0, 0, 0, 0, 0},
@@ -40,6 +55,39 @@ bool isStatic(int x, int y, int z, int pos) {
 
 void setup() {
   Serial.begin(9600); // initialize Serial communication
+
+  pinMode(ledPin, OUTPUT); // use the LED on pin 13 as an output
+
+  // set the local name peripheral advertises
+  blePeripheral.setDeviceName("FITNESS_APP_SENSOR");
+  // set the UUID for the service this peripheral advertises
+  blePeripheral.setAdvertisedServiceUuid(ledService.uuid());
+//  blePeripheral.setAdvertisedServiceUuid(sensorXRaw.uuid());
+//  blePeripheral.setAdvertisedServiceUuid(sensorYRaw.uuid());
+//  blePeripheral.setAdvertisedServiceUuid(sensorZRaw.uuid());  
+  
+  // add service and characteristic
+  blePeripheral.addAttribute(ledService);
+  blePeripheral.addAttribute(sensorXRaw);
+  blePeripheral.addAttribute(sensorYRaw);
+  blePeripheral.addAttribute(sensorZRaw);
+
+  // assign event handlers for connected, disconnected to peripheral
+  blePeripheral.setEventHandler(BLEConnected, blePeripheralConnectHandler);
+  blePeripheral.setEventHandler(BLEDisconnected, blePeripheralDisconnectHandler);
+
+//  // assign event handlers for characteristic
+
+//  sensorValue.setEventHandler(BLEWritten, switchCharacteristicWritten);
+//  // set an initial value for the characteristic
+  sensorXRaw.setValue(1);
+  sensorYRaw.setValue(2);
+  sensorZRaw.setValue(3);
+  
+  // advertise the service
+  blePeripheral.begin();
+  Serial.println(("Bluetooth device active, waiting for connections..."));
+  
   while (!Serial);    // wait for the serial port to open
 
   
@@ -123,10 +171,13 @@ byte getAverageSample(byte samples[], unsigned int num, unsigned int pos,
 //}
 
 void loop() {
-
+  
+  // poll peripheral
+  blePeripheral.poll();
+  
   CurieIMU.readAccelerometer(xRaw, yRaw, zRaw);
 
-  xRaw = unSign(xRaw); yRaw = unSign(yRaw); xRaw = unSign(xRaw); 
+  xRaw = unSign(xRaw); yRaw = unSign(yRaw); zRaw = unSign(zRaw); 
 
   bool is = isStatic(xRaw, yRaw, zRaw, count);
 
@@ -154,6 +205,9 @@ void loop() {
   
   delay(d);
 
+  sensorXRaw.setValue(xRaw / 100);
+  sensorYRaw.setValue(yRaw / 100);
+  sensorZRaw.setValue(zRaw / 100);
   Serial.print(xRaw / 100);
   Serial.print(" ");
   Serial.print(yRaw / 100);
@@ -164,4 +218,19 @@ void loop() {
   count = (count + 1) % 5;
   lastState = is; 
 }
+
+void blePeripheralConnectHandler(BLECentral& central) {
+  // central connected event handler
+  Serial.print("Connected event, central: ");
+  Serial.println(central.address());
+}
+
+void blePeripheralDisconnectHandler(BLECentral& central) {
+  // central disconnected event handler
+  Serial.print("Disconnected event, central: ");
+  Serial.println(central.address());
+}
+
+
+
 
